@@ -33,3 +33,7 @@
 5. [异步加载 js 脚本的方法有哪些？](https://github.com/into-piece/Step-By-Step/issues/5)
 6. [JSONP原理及简单实现](https://github.com/into-piece/Step-By-Step/issues/6)
 7. [实现一个数组去重的方法](https://github.com/into-piece/Step-By-Step/issues/7)
+
+
+## 面试总结的xmind
+![](https://ftp.bmp.ovh/imgs/2020/04/2b66a9ddfa060b90.png)
