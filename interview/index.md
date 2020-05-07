@@ -117,18 +117,6 @@ https分为两个阶段，数字证书验证阶段和数据传输阶段。
 - 客户端向一个权威的服务器检查证书的合法性，如果证书合法就生成随机数并通过公钥进行加密。发送到服务端
 - 服务端通过私钥进行解密，以此解密后的随机数作为数据传输阶段中对称加密的密钥，对后面传输的数据进行加密。
 
-### react 性能优化
-- 函数组件的memo
-- 类组件的purecomponent和scp + immer
-- hooks的useCallback和useMemo
-- lazy和suspense=》code split 
-- 减少副作用 + render回调使函数用引用 
-- 使用React.Fragment避免添加额外的DOM
-- ssr： Next.js
->整体来说 react 服务端渲染原理不复杂，其中最核心的内容就是同构。
-node server 接收客户端请求，得到当前的req url path,然后在已有的路由表内查找到对应的组件，拿到需要请求的数据，将数据作为 props
-、context或者store 形式传入组件，然后基于 react 内置的服务端渲染api renderToString() or renderToNodeStream() 把组件渲染为 html字符串或者 stream 流, 在把最终的 html 进行输出前需要将数据注入到浏览器端(注水)，server 输出(response)后浏览器端可以得到数据(脱水)，浏览器开始进行渲染和节点对比，然后执行组件的componentDidMount 完成组件内事件绑定和一些交互，浏览器重用了服务端输出的 html 节点，整个流程结束。
-
 
 express 和 koa 的区别，洋葱模型
 Express 和 Koa 最明显的差别就是 Handler 的处理方法，一个是普通的回调函数，一个是利用生成器函数（Generator Function）来作为响应器。往里头儿说就是 Express 是在同一线程上完成当前进程的所有 HTTP 请求，而 Koa 利用 co 作为底层运行框架，利用 Generator 的特性，实现“协程响应”，异步处理能力大大增强。
@@ -145,8 +133,23 @@ node 的模块能在浏览器中执行吗？
 
 
 react hook 的理解和应用
-node 多进程的通信方式
-taro的原理
+## node 多进程的通信方式
+Node进程间通信有4种方式：
+
+- 通过stdin/stdout传递json：最直接的方式，适用于能够拿到“子”进程handle的场景，适用于关联进程之间通信，无法跨机器
+
+- Node原生IPC支持：最native（地道？）的方式，比上一种“正规”一些，具有同样的局限性
+
+- 通过sockets：最通用的方式，有良好的跨环境能力，但存在网络的性能损耗
+
+- 借助message queue：最强大的方式，既然要通信，场景还复杂，不妨扩展出一层消息中间件，漂亮地解决各种通信问题
+
+
+## [taro的原理](https://blog.csdn.net/sinat_17775997/article/details/103391294)
+编译原理
+![](https://i.bmp.ovh/imgs/2020/05/b6c0a6a016c99747.png)
+
+
 node 服务如何处理错误和异常
 http1 和 http2 的区别
 两数之和（数组内找出2个数的和值）
