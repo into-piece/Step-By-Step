@@ -59,6 +59,13 @@ class ColorPoint extends Point {
 
 setState在原生事件，setTimeout，setInterval，Promise等异步操作中，state会同步更新。
 
+## 为什么要使用 key , 有什么好处?
+因为react的diff是O(1)，只会对同层级的节点进行对比，key作为节点的标识可以让react的diff明确对应节点的变化，增加diff的准确性和对比速度。
+
+所以当我们讲key设为math.random随机数的时候，diff会判断出节点标识变化导致每次render会直接对该节点进行replace。
+
+但当我们遍历字节点的时候尽量不要用index来做key，这是因为index不是唯一的标识，举个栗子：若当数组中第二第三项进行交换，这个时候尽管第二项已经是第三项的数据但index仍然为2，diff就无法通过index这个唯一标识来判断同级子元素是否发生变更。
+
 ## diff完成后如何合并两个虚拟dom树的差异之处？  
 答：fiber树有两颗，当前的current和新生成的workinprogress，。当React经过当前树时，对于每一个先存在的fiber节点，它都会创建一个替代（alternate）节点，这些节点组成了workInProgress树。这个节点是使用render方法返回的React元素的数据创建的。一旦更新处理完以及所有相关工作完成，React就有一颗替代树来准备刷新屏幕。一旦这颗workInProgress树渲染（render）在屏幕上，它便成了当前树。  
 ```
@@ -98,6 +105,7 @@ bind(this)：在constructor中进行绑定this，能让该方法的this指向在
 
 ## 虚拟dom和手动操作dom性能到底谁比较好？
 https://www.zhihu.com/question/31809713/answer/53544875
+https://mp.weixin.qq.com/s?__biz=MzI1ODk2Mjk0Nw==&mid=2247484104&idx=1&sn=59f4d94f95664b2dbb9b23a6cd0bce45&scene=21#wechat_redirect
 
 以往框架一旦发现数据发生了变动就对整个页面进行更新。这样的做法效率低下，因为数据的变动而导致的页面变动很可能只是局部的，直接对整个页面进行更新造成了不必要的性能消耗。
 
@@ -117,9 +125,9 @@ https://www.zhihu.com/question/31809713/answer/53544875
 
 ### 解决方案
 - 函数组件的memo
-- 类组件的purecomponent和scp + immer
-- hooks的useCallback和useMemo
-- lazy和suspense=》code split 
+- 类组件的purecomponent和shouldComponentUpdate + 不可变库immer
+- 缓存：hooks的useCallback和useMemo
+- 代码分割：lazy和suspense=》code split 
 - 减少副作用 + render中的事件回调应调用函数引用。
 - 使用React.Fragment避免添加额外的DOM
 - 谨慎使用 Context
