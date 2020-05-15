@@ -1,39 +1,52 @@
 ## Here is font-end learner intopiece-bin blog
+
 ## 2020
+
+### [5-14]更新
+
+- vue 双向绑定
+- webpack 打包原理
+- 热更新底层逻辑
+- 跨域
+- GET 和 POST 到底有什么区别？
+
 ### [4-28](https://github.com/into-piece/Step-By-Step/issues/22)
+
 - URLSearchParams 用法和实现
 - PWA 优势和如何实现
-- node中的vm
+- node 中的 vm
 - 【nodejs】eventloop + 线程池
-- 系统架构 =》 Nginx 负载均衡 + Node service层 + Redis 在内存中进行数据结构存储 （db缓存 + Kafka 做消息队列 + MySQL  数据库层
-- referer-policy 
+- 系统架构 =》 Nginx 负载均衡 + Node service 层 + Redis 在内存中进行数据结构存储 （db 缓存 + Kafka 做消息队列 + MySQL 数据库层
+- referer-policy
 
 ### [4-27](https://github.com/into-piece/Step-By-Step/issues/21)
+
 - Observer api (IntersectionObserver)
-- Proxy和Reflect
+- Proxy 和 Reflect
 - Typescript + Throttle + Hook
 - EventSource
 - 压缩图片方案解析
 
+### [走进 React Fiber 架构](https://github.com/into-piece/Step-By-Step/issues/23)
 
-### [走进React Fiber 架构](https://github.com/into-piece/Step-By-Step/issues/23)
-介绍React重构的起因和目的，理解Fiber tree单向链表结构中各属性含义，梳理调度过程和核心实现手段，深入新的生命周期，hooks，suspense，异常捕获等特性的用法和原理。
+介绍 React 重构的起因和目的，理解 Fiber tree 单向链表结构中各属性含义，梳理调度过程和核心实现手段，深入新的生命周期，hooks，suspense，异常捕获等特性的用法和原理。
 
-### [react灵魂拷问](https://github.com/into-piece/Step-By-Step/issues/15)
-- setState什么时候异步什么时候同步？
-- diff完成后如何合并两个虚拟dom树的差异之处？
-- 为啥需要bind(this)
+### [react 灵魂拷问](https://github.com/into-piece/Step-By-Step/issues/15)
 
-## 每日一题  
+- setState 什么时候异步什么时候同步？
+- diff 完成后如何合并两个虚拟 dom 树的差异之处？
+- 为啥需要 bind(this)
 
-1. [Promise全解析](https://github.com/into-piece/Step-By-Step/issues/1)
-2. [说一说你对JS上下文栈和作用域链的理解？](https://github.com/into-piece/Step-By-Step/issues/2)
-3. [事件轮询eventloop=>setTimeout 倒计时为什么会出现误差?](https://github.com/into-piece/Step-By-Step/issues/3)
+## 每日一题
+
+1. [Promise 全解析](https://github.com/into-piece/Step-By-Step/issues/1)
+2. [说一说你对 JS 上下文栈和作用域链的理解？](https://github.com/into-piece/Step-By-Step/issues/2)
+3. [事件轮询 eventloop=>setTimeout 倒计时为什么会出现误差?](https://github.com/into-piece/Step-By-Step/issues/3)
 4. [闭包](https://github.com/into-piece/Step-By-Step/issues/4)
 5. [异步加载 js 脚本的方法有哪些？](https://github.com/into-piece/Step-By-Step/issues/5)
-6. [JSONP原理及简单实现](https://github.com/into-piece/Step-By-Step/issues/6)
+6. [JSONP 原理及简单实现](https://github.com/into-piece/Step-By-Step/issues/6)
 7. [实现一个数组去重的方法](https://github.com/into-piece/Step-By-Step/issues/7)
 
+## 面试总结的 xmind
 
-## 面试总结的xmind
 ![](https://ftp.bmp.ovh/imgs/2020/04/2b66a9ddfa060b90.png)

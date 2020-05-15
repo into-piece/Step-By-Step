@@ -156,8 +156,6 @@ transform: rotate3D
 如何实现富文本编辑器
 node 的模块能在浏览器中执行吗？
 
-react hook 的理解和应用
-
 ## node 多进程的通信方式
 
 Node 进程间通信有 4 种方式：
@@ -264,27 +262,46 @@ var twoSum = function (nums, target) {
 };
 ```
 
-作用域，闭包
+## 作用域，闭包
 
-let var 区别，let 为什么能实现块儿作用域
+作用域是存储和访问变量的一套规则，包含全局作用域，函数作用域，块级作用域。
 
-js 处理代码的过程
+闭包：可以记住和访问自身词法作用域，函数在当前作用域之外，就产生了闭包。
 
-react 生命周期执行过程 ，包括子组件
+有权访问其他函数作用域中的变量的函数
 
-react setState 过
+因为存在函数 a 作用域中变量的引用，所以即使函数 a 执行完毕也无法被垃圾回收
 
-fiber 机制
+## 执行上下文
 
-diff 算法
+当 JS 引擎解析到可执行代码片段（通常是函数调用阶段）的时候，就会先做一些执行前的准备工作，这个 “准备工作”，就叫做 "执行上下文(execution context 简称 EC)" 或者也可以叫做执行环境。
 
-http 请求过程
+执行上下文 为我们的可执行代码块提供了执行前的必要准备工作，例如变量对象的定义、作用域链的扩展、提供调用者的对象引用等信息。
 
-缓存机制的处理过程
+分为
 
-vue 和 react 区别，
+- 全局执行上下文
+- 函数执行上下文
+- Eval 函数执行上下文
 
-koa 中间件机制，解决了什么问题
+内容：
+
+- 变量对象
+- 活动对象
+- 作用域链
+- 调用者信息
+
+## let var 区别，let 为什么能实现块儿作用域
+
+babel 会将 let 解析为立即执行函数，归根到底是生成一个函数作用域保存私有变量
+
+## js 处理代码的过程
+
+js 编译过程
+
+1. 词法分析（这个过程会讲由字符组成的祖父穿分解成有意义的代码块。这些代码块叫词法单元。
+2. 语法分析 将词法单元流转成一个由元素逐级嵌套所组成的代表了程序语法结构的树，生成抽象语法树
+3. 代码生成 将 AST 转换成可执行代码
 
 ## 理解堆栈溢出和内存泄漏的原理，如何防止
 
@@ -310,3 +327,127 @@ koa 中间件机制，解决了什么问题
   你能定义多次相同的 interface，这些定义将要合并为一个。对于类型别名就不成立，因为类型别名是独一无二的实体。
 
 [react diff](https://mp.weixin.qq.com/s?__biz=MzI1ODk2Mjk0Nw==&mid=2247484536&idx=1&sn=94777b8c1aab80dffe1fc224bec02c72&scene=21#wechat_redirect)
+
+## tcp 握手
+
+客户端发送请求报文（SYN=1，seq=x）进入 SYN-SENT 状态（表示请求连接
+服务端接受并发送确认报文（SYN=1,ACK,ack=x+1,seq=y）进入 SYN-RCVD 状态
+客户端发送确认报文（ACK=1,ack= y+1,seq=x+1)进入 ESTABLISHED 状态 （建立连接。表示两台机器正在通信。
+
+## 挥手
+
+客户端发送 FIN 报文（FIN=1,seq=x)，进入 FIN_WAIT 1
+服务端接受发送确认报文（ACK=1,ack=x+1，seq=y）服务端进入 CLOSE_WAIT 浏览器接受进入 FIN_WAIT 2
+服务端等待所有报文发送完毕，再次发送报文（FIN=1,ACK=1,ack=x+1，seq=y)进入 LAST_ACK
+客户端接收到发送（ACK=1,seq=z,ack=y+1）进入 TIME_WAIT 状态，等待 2msl 再关闭 close（在这段时间内如果客户端没有收到服务端的重发请求，那么表示 ACK 成功到达，挥手结束，否则客户端重发 ACK。这样可让 TCP 再次发送最后的 ACK 以防这个 ACK 丢失（另一端超时并重发最后的 FIN）。
+服务端接收到 关闭 tcp 连接
+
+## vue 双向绑定
+
+vue.js 则是采用数据劫持结合发布者-订阅者模式的方式，通过 Object.defineProperty()来劫持各个属性的 setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。
+
+首先要实现一个 oberserve，Object.defineProperty()需要对对象的每个 key 包括子对象的 key 进行遍历再设置 setter 和 getter，proxy 就不需要。
+
+然后在 complie 解析模版的时候通过识别特定指令，添加监听数据的订阅者，绑定更新函数，收集数据与视图的依赖关系，在数据变更的时候进行相应的回调和
+
+## webpack 打包原理
+
+1. 利用 babel 完成代码转换及解析,并生成单个文件的依赖模块 Map
+2. 从入口开始递归分析，并生成整个项目的依赖图谱
+3. 将各个引用模块打包为一个立即执行函数
+4. 将最终的 bundle 文件写入 bundle.js 中
+
+我们会可以使用这几个包：
+
+- @babel/parser：负责将代码解析为抽象语法树
+- @babel/traverse：遍历抽象语法树的工具，我们可以在语法树中解析特定的节点，然后做一些操作，如 ImportDeclaration 获取通过 import 引入的模块,FunctionDeclaration 获取函数
+- @babel/core：代码转换，如 ES6 的代码转为 ES5 的模式
+
+### 使用 babel 解析转化入口文件，获取 AST
+
+我们这里使用@babel/parser,这是 babel7 的工具,来帮助我们分析内部的语法,包括 es6,返回一个 AST 抽象语法树。
+
+### 使用 babel/traverse 处理 AST，找出所有依赖模块
+
+Babel 提供了@babel/traverse(遍历)方法维护这 AST 树的整体状态,我们这里使用它来帮我们找出依赖模块。
+
+### 将 AST 语法树转换为浏览器可执行代码
+
+将 AST 语法树转换为浏览器可执行代码,我们这里使用@babel/core 和 @babel/preset-env。
+
+### 递归解析所有依赖项,生成依赖关系图
+
+判断有依赖对象,递归解析所有依赖项，生成依赖关系图
+
+### 重写 require 函数,输出 bundle =》立即执行函数
+
+需要注意：
+
+- 我们写模块的时候，用的是 import/export.经转换后,变成了 require/exports
+- 我们要让 require/exports 能正常运行，那么我们得定义这两个东西，并加到 bundle.js 里
+- 在依赖图谱里，代码都成了字符串。要执行，可以使用 eval
+
+因此，我们要做这些工作：
+
+- 定义一个 require 函数，require 函数的本质是执行一个模块的代码，然后将相应变量挂载到 exports 对象上
+- 获取整个项目的依赖图谱，从入口开始，调用 require 方法。 完整代码如下：
+
+### 输出立即执行函数
+
+### 参考
+
+[webpack 打包原理 ? 看完这篇你就懂了 !](https://juejin.im/post/5e116fce6fb9a047ea7472a6#heading-12)
+[Webpack4 打包机制原理简析](https://juejin.im/post/5de099886fb9a071562facad#heading-3)
+
+## 热更新底层逻辑
+
+每次修改代码，紧接着触发重新编译，然后浏览器就会发出 2 次请求，依次是返回 hash 和修改文件名，第二次请求是修改的文件内容。
+
+思考下 🤔，浏览器是如何知道本地代码重新编译了，并迅速请求了新生成的文件？是谁告知了浏览器？浏览器获得这些文件又是如何热更新成功的？那让我们带着疑问看下热更新的过程，从源码的角度看原理。
+
+### 1.webpack-dev-server 启动本地服务
+
+- 启动 webpack，生成 compiler 实例。compiler 上有很多方法，比如可以启动 webpack 所有编译工作，以及监听本地文件的变化。
+- 用 express 启动本地服务器，启动 websocket 服务，实现双向通信，服务器就可以通知浏览器需要发生热更新，请求新的资源。
+- webpack-dev-middleware 调用 compiler 监听代码变化，变化则自动编译重新打包，生成新的 hash。
+- 浏览器通过 websocket 接收到热更新的通知，请求并获取修改内容。
+- hotApply 热更新模块替换，将新的模块添加到 modules 中并执行
+
+Hash：编译标示。热更新浏览器请求，会返回下次编译的 hash。
+
+### 核心
+
+Webpack Watch：在项目启动之后，Webpack 会通过 Compiler 类的 Run 方法开启编译构建过程，编译完成后，调用 Watch 方法监听文件变更，当文件发生变化，重新编译，编译完成之后继续监听。
+
+> 通过 websocket 建立起 浏览器端 和 服务器端 之间的通信
+
+hash 值代表依次编译标示，客户端判断是否发送请求。
+
+### 参考
+
+[从零实现 webpack 热更新 HMR](https://juejin.im/post/5df36ffd518825124d6c1765#heading-15)
+[轻松理解 webpack 热更新原理](https://juejin.im/post/5de0cfe46fb9a071665d3df0#heading-6)
+
+## [跨域](https://juejin.im/post/5e6c58b06fb9a07ce01a4199)
+
+1.  cors=> response.setHeader("Access-Control-Allow-Origin", \*)
+2.  jsonp js 生成 script 标签 运用 src 引用资源不跨域的 同时需要带一个 callback 参数，服务端通过识别 callback 运行，将所需要的数据放入 callback 的参数中 （只能是 get 方法
+3.  iframe
+4.  postMessage HTML5 api  
+    a.） 页面和其打开的新窗口的数据传递  
+    b.） 多窗口之间消息传递  
+    c.） 页面与嵌套的 iframe 消息传递  
+    d.） 上面三个场景的跨域数据传递
+5.  nginx 代理跨域 ： 同源策略是浏览器的安全策略，不是 HTTP 协议的一部分。服务器端调用 HTTP 接口只是使用 HTTP 协议，不会执行 JS 脚本，不需要同源策略，也就不存在跨越问题。
+6.  WebSocket 协议跨域 HTML5 协议 实现了浏览器与服务器全双工通信，同时允许跨域通讯，
+7.  nodeJs 中间件代理 利用 node + express + http-proxy-middleware 搭建一个 proxy 服务器。
+
+## GET 和 POST 到底有什么区别？
+
+- 语义上：get 是从服务器上获取数据，post 是修改数据。
+- 传输数据：get 请求数据放在请求 url 后，post 会放在请求体中。
+- 保密性：get 请求的数据在 url 容易被窃取，默认会被浏览器缓存。post 保密性相比好一点。
+- 幂等：get 请求多次返回结果是一样的，post 则可能多次更改服务器的数据。
+- 数据类型：get 只允许 ascll 字符，而 post 则无限制，所以很多文件上都是 post 请求。
+
+## koa 中间件机制，解决了什么问题
