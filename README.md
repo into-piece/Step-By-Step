@@ -1,25 +1,34 @@
 ## Here is font-end learner intopiece-bin blog
 
+
+## 持续更新=》[面试集锦](https://github.com/into-piece/Step-By-Step/blob/master/interview/index.md)
+- vue 双向绑定
+- webpack 打包原理
+- 热更新底层逻辑
+- 跨域
+- GET 和 POST 到底有什么区别？
+
 ## 2020
 
 ### 20200519
-
+- vue2 defindproperty 双向绑定与 vue3 proxy 的区别
 - webpack 构建优化
 - animation
-- vue2 defindproperty 双向绑定与 vue3 proxy 的区别
 - 1px 的问题
 - react-native 如何使用 code-push 热更新
 - Gulp 和 Webpack 功能实现对比
 - 设计模式
 - redux 中间件源码解析
 
-### [5-14]更新
-
-- vue 双向绑定
-- webpack 打包原理
-- 热更新底层逻辑
-- 跨域
-- GET 和 POST 到底有什么区别？
+### [20200513](https://github.com/into-piece/Step-By-Step/issues/26)
+- koa的洋葱模型实现
+- 服务端是如何做路由分发
+- 操作系统 - 磁盘寻道调度算法
+- 常见进程间通信（IPC）方式
+- 从输入 URL 到页面渲染经历了什么
+- setTimeout setImmediate process.nextTick的区别
+- http2对比websocket
+- vue3
 
 ### [4-28](https://github.com/into-piece/Step-By-Step/issues/22)
 

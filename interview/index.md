@@ -53,11 +53,59 @@ object 的 key 只能是字符串，map 的 key 可以是任何数据类型
 
 你可以通过 size 属性很容易地得到一个 Map 的键值对个数，而对象的键值对个数只能手动确认。很多方法都非常方便，has 可以得知是否存在某个属性。
 
-## 说说 websocket
+## [websocket(https://juejin.im/post/5a1bdf676fb9a045055dd99d)
 
 HTTP 是不支持持久连接的，keep-alive 只是把多个连接合并为一个。websocket 是 h5 推出的一个是一个持久化协议，只要建立一次连接，就可以持续接收服务端发送的数据。
 
 解决了 HTTP 轮询（得不到就一直请求）和 long poll（发送堵塞直到得到数据返回）同步有延迟，消耗资源（HTTP 是非状态性的，每次建立连接都是需要鉴别身份）
+
+### 事件
+```
+//创建WebSocket实例，可以使用ws和wss。第二个参数可以选填自定义协议，如果多协议，可以以数组方式
+var socket = new WebSocket('ws://demos.kaazing.com/echo');
+``` 
+
+- open
+服务器相应WebSocket连接请求触发
+```
+  socket.onopen = (event) => {
+  	socket.send('Hello Server!');
+  };
+```
+
+- message
+服务器有 响应数据 触发
+```
+  socket.onmessage = (event) => {
+      debugger;
+      console.log(event.data);
+  };
+复
+```
+- error
+出错时触发，并且会关闭连接。这时可以根据错误信息进行按需处理
+```
+  socket.onerror = (event) => {
+  	console.log('error');
+  }
+复
+```
+
+
+
+### HTTP/2 和 Websocket
+#### HTTP/2
+
+- 它是 google 提出的开源协议，旨在提高网络传输效率
+- 它是二进制协议
+- 它采用多路复用解决 HTTP 1.1 的 head-of-line blocking (HOL Blocking)问题(较慢的请求阻塞其它请求的问题)
+- 它通过压缩 http 头提高效率
+- 它支持全双工，因此可以使用 Server Push 推送到客户端
+
+### 对比
+- HTTP/2 Server Push 不能被代码使用，所以还得配合SSE(Server sent event)，无论从coder还是运维的角度来看，这混搭增加了复杂度。
+- IE对http2以及SSE都支持的不好
+- HTTP/2 连接不确定性会永远保持连接，而websocket有onclose事件，对代码友好
 
 ## 基本数据类型有哪些
 
