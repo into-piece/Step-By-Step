@@ -46,23 +46,25 @@ function listToTree(nums, parent = null){
 
 ```
 class cacheControl {
-  	reqList = []
-    value = null
-    constructor(func){
-      this.reqList.push(func)
-  	}
-  	getValue(){
-        if(this.value) return this.value
-    }
-  	addReq(func){
-    	this.reqList.push(func)
-    }
-  	async action(){
-    	this.reqList.forEach(req=> {
-          this.value = await req() 
-       	})
-    }
+  reqList = []
+  value = null
+  constructor(func){
+    this.reqList.push(func)
+  }
+  getValue(){
+      if(this.value) return this.value
+  }
+  addReq(func){
+    this.reqList.push(func)
+  }
+  async action(){
+    this.reqList.forEach(req=> {
+        this.value = await req() 
+      })
+  }
 }
 
 ```
+
+
 

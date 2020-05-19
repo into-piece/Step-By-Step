@@ -11,38 +11,29 @@
 
 ### 实现随机颜色值
 
-### 如何提升 webpack 的打包速度
-
-#### DLLPlugin 和 DLLReferencePlugin 用某种方法实现了拆分 bundles
-
-https://www.webpackjs.com/plugins/dll-plugin/
-这个插件是在一个额外的独立的 webpack 设置中创建一个只有 dll 的 bundle(dll-only-bundle)。 这个插件会生成一个名为 manifest.json 的文件，这个文件是用来让 DLLReferencePlugin 映射到相关的依赖上去的。
-
-在打包的过程中将，常用的包进行提前打包，节省之后打包的时间。
-
-### json.stringify 需要注意什么
+## json.stringify 需要注意什么
 
 undefined、任意的函数以及 symbol 值，在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成 null（出现在数组中时）。函数、undefined 被单独转换时，会返回 undefined，如 JSON.stringify(function(){}) or JSON.stringify(undefined)。
 
-### tcp udp 的区别
+## tcp udp 的区别
 
 - TCP 是面向连接的，UDP 是面向无连接的
 - TCP 是面向字节流的，UDP 是基于数据报的
 - TCP 保证数据正确性，UDP 可能丢包
 - UDP 程序结构较简单，只有端口号
 
-#### 应用场景：
+### 应用场景：
 
 udp：需要处理速度快，可以容忍丢包，如直播，实时游戏之类的
 
-#### TCP 为什么是可靠连接
+### TCP 为什么是可靠连接
 
 - 通过 TCP 连接传输的数据无差错，不丢失，不重复，且按顺序到达。
 - TCP 报文头里面的序号能使 TCP 的数据按序到达
 - 报文头里面的确认序号能保证不丢包，累计确认及超时重传机制
 - TCP 拥有流量控制及拥塞控制的机制
 
-### 数组去重
+## 数组去重
 
 - Set 对象的特性=》new set([1,2,2,3])
 - 新建一个空的结果数组，for 循环原数组，判断结果数组是否存在当前元素，如果有相同的值则跳过，不相同则 push 进数组。
@@ -54,7 +45,7 @@ function unique(arr){
 }
 ```
 
-### object 和 map 的区别
+## object 和 map 的区别
 
 object 的 key 只能是字符串，map 的 key 可以是任何数据类型
 
@@ -62,17 +53,17 @@ object 的 key 只能是字符串，map 的 key 可以是任何数据类型
 
 你可以通过 size 属性很容易地得到一个 Map 的键值对个数，而对象的键值对个数只能手动确认。很多方法都非常方便，has 可以得知是否存在某个属性。
 
-### 说说 websocket
+## 说说 websocket
 
 HTTP 是不支持持久连接的，keep-alive 只是把多个连接合并为一个。websocket 是 h5 推出的一个是一个持久化协议，只要建立一次连接，就可以持续接收服务端发送的数据。
 
 解决了 HTTP 轮询（得不到就一直请求）和 long poll（发送堵塞直到得到数据返回）同步有延迟，消耗资源（HTTP 是非状态性的，每次建立连接都是需要鉴别身份）
 
-### 基本数据类型有哪些
+## 基本数据类型有哪些
 
 string number boolean null undefined object symbol bigint
 
-### new 一个对象的过程
+## new 一个对象的过程
 
 new 运算接受一个构造器和一组调用参数，实际上做了几件事：
 
@@ -80,7 +71,7 @@ new 运算接受一个构造器和一组调用参数，实际上做了几件事�
 - 将 this 和调用参数传给构造器，执行；
 - 判断执行返回结果是否为对象，若是则返回，否则返回创建的实例对象
 
-### promise 原理 ，then 实现
+## promise 原理 ，then 实现
 
 在 promise 中用回调数组保存 then 传入的回调，等待异步执行完毕后，resolve 被调用执行 then 保存的对应的 fullfilled 回调或 reject 回调。
 
@@ -116,13 +107,17 @@ then = (successfunc: Func, failfunc?: Func) => {
   };
 ```
 
-### eventloop 机制介绍
+## eventloop 机制介绍
 
-### async wait 机制
+## async wait 机制
 
-### bfc 块级格式上下文
+## bfc 块级格式上下文
 
-### 缓存和强缓存
+格式上下文是定义根据文档树元素生成的盒子所处的环境的规则，盒子按照什么规则展示。
+
+块击作用域有自己一些展示规则，包括：
+
+## 缓存和强缓存
 
 - 强缓存： expires（HTTP1.0）（时间戳） 和 cash-control（http1.1）（优先级更高）
 - 协商缓存：last-modified（资源的最新更新时间）和 e-tag（资源唯一标示）
@@ -266,7 +261,7 @@ var twoSum = function (nums, target) {
 
 作用域是存储和访问变量的一套规则，包含全局作用域，函数作用域，块级作用域。
 
-闭包：可以记住和访问自身词法作用域，函数在当前作用域之外，就产生了闭包。
+闭包：可以记住和访问自身词法作用域，函数在当前作用域之外执行，就产生了闭包。
 
 有权访问其他函数作用域中的变量的函数
 
@@ -423,6 +418,27 @@ Webpack Watch：在项目启动之后，Webpack 会通过 Compiler 类的 Run �
 
 hash 值代表依次编译标示，客户端判断是否发送请求。
 
+## 如何提升 webpack 的打包速度
+
+### exclude/include
+
+### cache-loader
+
+在一些性能开销较大的 loader 之前添加 cache-loader，将结果缓存中磁盘中
+
+### DLLPlugin 和 DLLReferencePlugin 用某种方法实现了拆分 bundles
+
+https://www.webpackjs.com/plugins/dll-plugin/
+这个插件是在一个额外的独立的 webpack 设置中创建一个只有 dll 的 bundle(dll-only-bundle)。 这个插件会生成一个名为 manifest.json 的文件，这个文件是用来让 DLLReferencePlugin 映射到相关的依赖上去的。
+
+在打包的过程中将，常用的包进行提前打包，节省之后打包的时间。
+
+### webpack-parallel-uglify-plugin 和 happyPack
+
+由于有大量文件需要解析和处理，构建是文件读写和计算密集型的操作，特别是当文件数量变多后，Webpack 构建慢的问题会显得严重。文件读写和计算操作是无法避免的，那能不能让 Webpack 同一时刻处理多个任务，发挥多核 CPU 电脑的威力，以提升构建速度呢？
+
+HappyPack 就能让 Webpack 做到这点，它把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程。
+
 ### 参考
 
 [从零实现 webpack 热更新 HMR](https://juejin.im/post/5df36ffd518825124d6c1765#heading-15)
@@ -444,10 +460,12 @@ hash 值代表依次编译标示，客户端判断是否发送请求。
 
 ## GET 和 POST 到底有什么区别？
 
-- 语义上：get 是从服务器上获取数据，post 是修改数据。
+- 语义上：get 是从服务器上获取数据，post 是提交数据。
+- 传输长度：get 参数有长度限制（受限于 url 长度，具体的数值取决于浏览器和服务器的限制，最长 2048 字节），而 post 无限制。
 - 传输数据：get 请求数据放在请求 url 后，post 会放在请求体中。
-- 保密性：get 请求的数据在 url 容易被窃取，默认会被浏览器缓存。post 保密性相比好一点。
+- 保密性：get 请求的数据在 url 容易被窃取，会被浏览器主动缓存，get 请求会保存在浏览器历史记录中，还可能保存在 web 服务器的日志中，post 保密性相比好一点
 - 幂等：get 请求多次返回结果是一样的，post 则可能多次更改服务器的数据。
 - 数据类型：get 只允许 ascll 字符，而 post 则无限制，所以很多文件上都是 post 请求。
+- GET 产生一个 TCP 数据包；POST 产生两个 TCP 数据包。（并不是所有浏览器都会在 POST 中发送两次包，Firefox 就只发送一次。
 
 ## koa 中间件机制，解决了什么问题

@@ -2,6 +2,17 @@
 
 ## 2020
 
+### 20200519
+
+- webpack 构建优化
+- animation
+- vue2 defindproperty 双向绑定与 vue3 proxy 的区别
+- 1px 的问题
+- react-native 如何使用 code-push 热更新
+- Gulp 和 Webpack 功能实现对比
+- 设计模式
+- redux 中间件源码解析
+
 ### [5-14]更新
 
 - vue 双向绑定
