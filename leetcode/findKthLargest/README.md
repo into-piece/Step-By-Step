@@ -1,17 +1,17 @@
-// https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
-// 在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
+> https:>leetcode-cn.com/problems/kth-largest-element-in-an-array/
+> 在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
 
-// 示例 1:
-// 输入: [3,2,1,5,6,4] 和 k = 2
-// 输出: 5
-// 示例 2:
+> 示例 1:
+> 输入: [3,2,1,5,6,4] 和 k = 2
+> 输出: 5
+> 示例  2:
 
-// 输入: [3,2,3,1,2,4,5,5,6] 和 k = 4
-// 输出: 4
-// 说明:
+> 输入: [3,2,3,1,2,4,5,5,6] 和 k = 4
+> 输出: 4
+> 说明:
+> 你可以假设 k 总是有效的，且 1 ≤ k ≤ 数组的长度。
 
-// 你可以假设 k 总是有效的，且 1 ≤ k ≤ 数组的长度。
-
+```
 function findKthLargest(arr, num) {
   function quicksort(arr) {
     if (arr.length < 2) return arr;
@@ -59,6 +59,8 @@ function findKthLargest2(arr, num) {
   return sortArr[sortArr.length - num];
 }
 
+
+
 // 创建一个大顶堆，将所有数组中的元素加入堆中，并保持堆的大小小于等于 k。这样，堆中就保留了前 k 个最大的元素。这样，堆顶的元素就是正确答案。
 // function findKthLargest3(arr, num) {
 //   class Heap {
@@ -73,3 +75,5 @@ function findKthLargest2(arr, num) {
 
 //   const heap = new Heap();
 // }
+
+```

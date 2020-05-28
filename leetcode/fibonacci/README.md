@@ -1,4 +1,10 @@
-// 斐波那契数列
+## 斐波那契数列
+
+10 = 9 + 8 + 7 + .... + 1
+
+f(n) = f(n-1) + f(n-2)
+
+```
 function fibonacci(n) {
   if (n === 1 || n === 0) return n;
   return fibonacci(n - 1) + fibonacci(n - 2);
@@ -63,7 +69,7 @@ function fibonacci(n) {
 function fibonacci(n){
 	let seed = 1;
 	return [...Array(n)].reduce(p => {
-		const temp = p + seed; 
+		const temp = p + seed;
 		seed = p;
 		return temp;
 	},0)
@@ -71,3 +77,4 @@ function fibonacci(n){
 
 const c = fibonacci3(8);
 console.log(c,'=======fibonacci3')
+```
