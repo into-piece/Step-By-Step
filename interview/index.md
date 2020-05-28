@@ -90,6 +90,19 @@ var socket = new WebSocket('ws://demos.kaazing.com/echo');
   }
 复
 ```
+- close
+```
+ 连接关闭时触发，这在两端都可以关闭。另外如果连接失败也是会触发的。
+ 针对关闭一般我们会做一些异常处理,关于异常参数：
+
+ 1. socket.readyState  2 正在关闭  3 已经关闭
+ 2. event.wasClean [Boolean]  true  客户端或者服务器端调用close主动关闭  false 反之
+ 3. event.code [Number] 关闭连接的状态码。socket.close(code, reason)
+ 4. event.reason [String] 关闭连接的原因。socket.close(code, reason)
+ socket.onclose = (event) => {
+  debugger;
+ }
+```
 
 
 
@@ -491,6 +504,7 @@ HappyPack 就能让 Webpack 做到这点，它把任务分解给多个子进程�
 
 [从零实现 webpack 热更新 HMR](https://juejin.im/post/5df36ffd518825124d6c1765#heading-15)
 [轻松理解 webpack 热更新原理](https://juejin.im/post/5de0cfe46fb9a071665d3df0#heading-6)
+[Webpack 4进阶--从前的日色变得慢 ，一下午只够打一次包](https://juejin.im/post/5ac9b7165188255cb32e66cc#heading-4)
 
 ## [跨域](https://juejin.im/post/5e6c58b06fb9a07ce01a4199)
 

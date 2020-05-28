@@ -1,16 +1,30 @@
 ## Here is font-end learner intopiece-bin blog
 
-
-## 持续更新=》[面试集锦](https://github.com/into-piece/Step-By-Step/blob/master/interview/index.md)
-- vue 双向绑定
-- webpack 打包原理
-- 热更新底层逻辑
-- 跨域
-- GET 和 POST 到底有什么区别？
-
 ## 2020
 
+### [20200526](https://github.com/into-piece/Step-By-Step/issues/34)
+
+- Event Loop 中的 rAF，rIC 和渲染
+- IntersectionObserver
+
+### [20200525](https://github.com/into-piece/Step-By-Step/issues/33)
+
+- 回流，重绘与合成的区别，如何优化
+- 为什么 react 使用 fiber 做时间分片不用 generator
+- React 原生动态加载
+- babel 原理
+
+### [20200522](https://github.com/into-piece/Step-By-Step/issues/32)
+
+- 腾讯面试
+- csp( Content-Security-Policy 1.meta 的 http-equiv 属性 2.http header
+
+### [20200521](https://github.com/into-piece/Step-By-Step/issues/31)
+
+- 原生的自定义事件吗(坑 还没填
+
 ### 20200519
+
 - vue2 defindproperty 双向绑定与 vue3 proxy 的区别
 - webpack 构建优化
 - animation
@@ -21,13 +35,14 @@
 - redux 中间件源码解析
 
 ### [20200513](https://github.com/into-piece/Step-By-Step/issues/26)
-- koa的洋葱模型实现
+
+- koa 的洋葱模型实现
 - 服务端是如何做路由分发
 - 操作系统 - 磁盘寻道调度算法
 - 常见进程间通信（IPC）方式
 - 从输入 URL 到页面渲染经历了什么
-- setTimeout setImmediate process.nextTick的区别
-- http2对比websocket
+- setTimeout setImmediate process.nextTick 的区别
+- http2 对比 websocket
 - vue3
 
 ### [4-28](https://github.com/into-piece/Step-By-Step/issues/22)
@@ -56,6 +71,20 @@
 - setState 什么时候异步什么时候同步？
 - diff 完成后如何合并两个虚拟 dom 树的差异之处？
 - 为啥需要 bind(this)
+
+## 持续更新=》[面试集锦](https://github.com/into-piece/Step-By-Step/blob/master/interview/index.md)
+
+- vue 双向绑定
+- webpack 打包原理
+- 热更新底层逻辑
+- 跨域
+- GET 和 POST 到底有什么区别？
+- tcp udp 的区别
+- 执行上下文
+- let var 区别，let 为什么能实现块儿作用域
+- js 处理代码的过程
+- 理解堆栈溢出和内存泄漏的原理，如何防止
+- typescript 的 type 和 interface 的区别
 
 ## 每日一题
 

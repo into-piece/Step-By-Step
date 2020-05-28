@@ -1,8 +1,11 @@
+console.log("begin=========bind");
 Function.prototype.myBind = function () {
   var func = this;
   var args1 = [].slice.call(arguments);
   return function () {
+    console.log("===============123");
     var args2 = [].slice.call(arguments);
+    console.log("=======", args1, ...args1, ...args2);
     return func.call(...args1, ...args2);
   };
 };
@@ -16,3 +19,6 @@ const b = {
 };
 
 const d = a.myBind(b, 123);
+console.log(d(123), "=====bind");
+
+console.log("end=========bind");
