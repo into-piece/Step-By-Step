@@ -10,7 +10,7 @@
 - 反转从位置 m 到 n 的链表
 - 反转递归
 
-### 字符串+数组
+### 数组
 
 - [快乐数](https://github.com/into-piece/Step-By-Step/tree/master/leetcode/happynum)
 - [数组中找出和为目标值的那 两个 整数，并返回他们的数组下标](https://github.com/into-piece/Step-By-Step/blob/master/leetcode/findSum)
@@ -19,7 +19,12 @@
 - [LeetCode 204. Count Primes 质数的个数](https://github.com/into-piece/Step-By-Step/blob/master/leetcode/contPrimes)
 - [LeetCode 221. Maximal Square 最大正方形](https://github.com/into-piece/Step-By-Step/blob/master/leetcode/maximalSquare)
 - [斐波那契数列](https://github.com/into-piece/Step-By-Step/blob/master/leetcode/fibonacci)
+- [threeSum 数组中三数之和为 0](https://github.com/into-piece/Step-By-Step/blob/master/leetcode/threeSum)
+
+## 字符/数字
+
 - [字符操作综合题目](https://github.com/into-piece/Step-By-Step/blob/master/leetcode/strOperation)
+- [判断是否回文字符](https://github.com/into-piece/Step-By-Step/blob/master/leetcode/PalindromeNumber)
 
 ### [树](https://github.com/into-piece/Step-By-Step/blob/master/leetcode/tree)
 
