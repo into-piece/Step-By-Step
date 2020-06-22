@@ -381,6 +381,7 @@ js 编译过程
 - 声明函数方式不一样
 - 实现：type 也可以 implements，但是不可以通过联合类型去实现类。
   你能定义多次相同的 interface，这些定义将要合并为一个。对于类型别名就不成立，因为类型别名是独一无二的实体。
+- interface可以声明合并（多次声明， type不行
 
 [react diff](https://mp.weixin.qq.com/s?__biz=MzI1ODk2Mjk0Nw==&mid=2247484536&idx=1&sn=94777b8c1aab80dffe1fc224bec02c72&scene=21#wechat_redirect)
 

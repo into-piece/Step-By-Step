@@ -1,3 +1,14 @@
+Given a 2D binary matrix filled with 0's and 1's, find the largest square containing all 1's and return its area.
+
+For example, given the following matrix:
+
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+Return 4.
+
+```
 console.log(1, "===========dp");
 var maximalSquare = function (matrix) {
   let maxSide = 0;
@@ -48,3 +59,4 @@ const a = maximalSquare([
 const b = maximalSquare([[1]]);
 console.log("result", a, b);
 console.log(2, "===========dp");
+```
